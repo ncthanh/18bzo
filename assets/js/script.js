@@ -13,7 +13,7 @@ const musicData = [
     title: "Happy Happy",
     album: "New Journey",
     year: 2026,
-    artist: "Mr Cong",
+    artist: "Mr. Cong",
     musicPath: "./assets/music/music.mp3",
   }
 ];
