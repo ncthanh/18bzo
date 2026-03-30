@@ -4,7 +4,7 @@ const run = async () => {
   console.log(1)
   if (navigator.serviceWorker) {
     console.log(2)
-    navigator.serviceWorker.register('sw.js',{ scope:'/' })
+    navigator.serviceWorker.register('sw.js', { scope:'/' })
 
     console.log(3)
     registration = await navigator.serviceWorker.ready
