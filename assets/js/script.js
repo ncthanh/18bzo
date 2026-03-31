@@ -24,6 +24,23 @@ const musicData = [
     year: 2026,
     artist: "Mr. Cong",
     musicPath: "./assets/music/music2.mp3",
+  },{
+    backgroundImage: "./assets/images/poster.jpg",
+    posterUrl: "./assets/images/poster.jpg",
+    title: "Happy Happy 3",
+    album: "New Journey",
+    year: 2026,
+    artist: "Mr. Cong",
+    musicPath: "./assets/music/music3.mp3",
+  },
+  {
+    backgroundImage: "./assets/images/poster.jpg",
+    posterUrl: "./assets/images/poster.jpg",
+    title: "Happy Happy 4",
+    album: "New Journey",
+    year: 2026,
+    artist: "Mr. Cong",
+    musicPath: "./assets/music/musi4.mp3",
   }
 ];
 
