@@ -40,7 +40,7 @@ const musicData = [
     album: "New Journey",
     year: 2026,
     artist: "Mr. Cong",
-    musicPath: "./assets/music/musi4.mp3",
+    musicPath: "./assets/music/music4.mp3",
   }
 ];
 
