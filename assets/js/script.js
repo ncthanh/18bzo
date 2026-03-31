@@ -244,11 +244,19 @@ playerSeekRange.addEventListener("input", seek);
 
 const isMusicEnd = function () {
   if (audioSource.ended) {
-    playBtn.classList.remove("active");
-    audioSource.currentTime = 0;
-    playerSeekRange.value = audioSource.currentTime;
-    playerRunningTime.textContent = getTimecode(audioSource.currentTime);
-    updateRangeFill();
+    if (repeatValue === 'no_repeat') {
+      playBtn.classList.remove("active");
+      audioSource.currentTime = 0;
+      playerSeekRange.value = audioSource.currentTime;
+      playerRunningTime.textContent = getTimecode(audioSource.currentTime);
+      updateRangeFill();
+
+    } else if (repeatValue === 'repeat_on') {
+      lastPlayedMusic = currentMusic;
+      currentMusic >= musicData.length - 1 ? currentMusic = 0 : currentMusic++;
+      changePlayerInfo();
+      changePlaylistItem();
+    }
   }
 }
 
@@ -328,13 +336,37 @@ playerShuffleBtn.addEventListener("click", shuffle);
 
 const playerRepeatBtn = document.querySelector("[data-repeat]");
 
+let repeatValue = 'no_repeat';
+
 const repeat = function () {
-  if (!audioSource.loop) {
+  const cur = this.querySelector(".default-icon");
+  if (cur.textContent === 'repeat') {
+    playerRepeatBtn.innerHTML = `
+      <span class="material-symbols-rounded active-icon">repeat</span>
+      <span class="material-symbols-rounded default-icon">repeat_on</span>
+      <span class="material-symbols-rounded active-icon">repeat_one</span>
+    `;
+    repeatValue = 'repeat_on'; // repeat entire playlist
+  } else if (cur.textContent === 'repeat_on') {
+    playerRepeatBtn.innerHTML = `
+      <span class="material-symbols-rounded active-icon">repeat</span>
+      <span class="material-symbols-rounded active-icon">repeat_on</span>
+      <span class="material-symbols-rounded default-icon">repeat_one</span>
+    `;
+    repeatValue = 'repeat_one'; // repeat one
+  } else if (cur.textContent === 'repeat_one') {
+    playerRepeatBtn.innerHTML = `
+      <span class="material-symbols-rounded default-icon">repeat</span>
+      <span class="material-symbols-rounded active-icon">repeat_on</span>
+      <span class="material-symbols-rounded active-icon">repeat_one</span>
+    `;
+    repeatValue = 'no_repeat'; // not repeat
+  }
+
+  if (repeatValue === 'repeat_one') {
     audioSource.loop = true;
-    this.classList.add("active");
   } else {
     audioSource.loop = false;
-    this.classList.remove("active");
   }
 }
 
